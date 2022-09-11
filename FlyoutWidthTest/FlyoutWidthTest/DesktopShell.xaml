@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       FlyoutBehavior="Locked"
+       FlyoutIsPresented="True"
+       FlyoutWidth="500"
+       xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+       x:Class="FlyoutWidthTest.DesktopShell">
+    <Shell.FlyoutContent>
+        
+        <!--Comment this collection view and uncomment below one and crash goes from windows-->
+        <CollectionView x:Name="selectHour" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                        SelectedItem="{Binding SelectedHour}"
+                        SelectionChangedCommand="{Binding SelectedHourCommand}" SelectionMode="Single"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}"
+                                   >
+            <CollectionView.ItemsSource>
+                <scg:List x:TypeArguments="x:String">
+                    <x:String>1 hour</x:String>
+                    <x:String>2 hours</x:String>
+                    <x:String>4 hours</x:String>
+                </scg:List>
+            </CollectionView.ItemsSource>
+        </CollectionView>
+
+        <!--Uncomment this and app doesn't crash on windows-->
+        <!--<CollectionView x:Name="selectHour" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                   SelectionChanged="CollectionView_SelectionChanged" SelectionMode="Single">
+            <CollectionView.ItemsSource>
+                <scg:List x:TypeArguments="x:String">
+                    <x:String>1 hour</x:String>
+                    <x:String>2 hours</x:String>
+                    <x:String>4 hours</x:String>
+                </scg:List>
+            </CollectionView.ItemsSource>
+        </CollectionView>-->
+    </Shell.FlyoutContent>
+</Shell>
